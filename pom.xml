@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd
-http://maven.apache.org/POM/4.0.0 http://maven.apache.org/POM/4.0.0">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>ru.netology</groupId>
     <artifactId>Films</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.22.2</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -22,7 +20,6 @@ http://maven.apache.org/POM/4.0.0 http://maven.apache.org/POM/4.0.0">
             <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -30,20 +27,22 @@ http://maven.apache.org/POM/4.0.0 http://maven.apache.org/POM/4.0.0">
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <failIfNoTests>false</failIfNoTests>
-                </configuration>
                 <version>2.22.2</version>
+                <configuration>
+                    <failIfNoTests>true</failIfNoTests>
+                </configuration>
             </plugin>
+
+
+
+
+
 
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.5</version>
-            </plugin>
 
-            <plugin>
-                <artifactId/>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -52,7 +51,6 @@ http://maven.apache.org/POM/4.0.0 http://maven.apache.org/POM/4.0.0">
                         </goals>
                     </execution>
 
-
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
@@ -60,12 +58,34 @@ http://maven.apache.org/POM/4.0.0 http://maven.apache.org/POM/4.0.0">
                             <goal>report</goal>
                         </goals>
                     </execution>
+
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>100%</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+
                 </executions>
             </plugin>
         </plugins>
+
     </build>
-
-
 </project>
+
+
 
 
